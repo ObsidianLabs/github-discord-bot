@@ -1,0 +1,35 @@
+name: Github Discord Nofitication
+description: 'Send Github notification to Discord'
+author: 'inorthisle'
+branding:
+  icon: 'bell'
+  color: 'red'
+inputs:
+  discord_webhook:
+    description: 'Discord Webhook URL'
+    required: true
+  test_server_url:
+    description: 'Test Server URL'
+    required: true
+  client:
+    description: 'web or desktop'
+    required: true
+  branch:
+    description: 'Updated branch'
+    required: true
+  commit_id:
+    description: 'Commit ID'
+    required: true
+  runner_id:
+    description: 'Runner ID'
+    required: true
+  version:
+    description: 'version number'
+    required: true
+  test_server_api_url:
+    description: 'Test Server API URL'
+    required: true
+  
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
