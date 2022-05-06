@@ -42,24 +42,30 @@ const params = {
 			"title": isProduction ? prodMessageTitle : testMessageTitle,
 			"description": `${RUNNER_ID} - ${COMMIT_ID}`,
 			"color": "647562",
-			"fields": [
-				{
-					"name": "Mac OS",
-					"value": `[Download](${TEST_SERVER_API_URL}/${RUNNER_ID}-${COMMIT_ID}/Black-IDE-${VERSION}.dmg)`,
-					"inline": true
-				},
-				{
-					"name": "Windows",
-					"value": `[Download](${TEST_SERVER_API_URL}/${RUNNER_ID}-${COMMIT_ID}/Black-IDE-${VERSION}.exe)`,
-					"inline": true
-				},
-				{
+			"fields": isProduction ?
+				[
+					{
+						"name": "You can download the release assets from Github 👇",
+						"value": `[Click Me For Release Assets](https://github.com/ObsidianLabs/Black-IDE/releases`,
+					}
+				] : [
+					{
+						"name": "Mac OS",
+						"value": `[Download](${TEST_SERVER_API_URL}/${RUNNER_ID}-${COMMIT_ID}/Black-IDE-${VERSION}.dmg)`,
+						"inline": true
+					},
+					{
+						"name": "Windows",
+						"value": `[Download](${TEST_SERVER_API_URL}/${RUNNER_ID}-${COMMIT_ID}/Black-IDE-${VERSION}.exe)`,
+						"inline": true
+					},
+					{
 
-					"name": "Linux",
-					"value": `[Download](${TEST_SERVER_API_URL}/${RUNNER_ID}-${COMMIT_ID}/Black-IDE-${VERSION}.zip)`,
-					"inline": true
-				}
-			]
+						"name": "Linux",
+						"value": `[Download](${TEST_SERVER_API_URL}/${RUNNER_ID}-${COMMIT_ID}/Black-IDE-${VERSION}.zip)`,
+						"inline": true
+					}
+				]
 		}
 	],
 }
