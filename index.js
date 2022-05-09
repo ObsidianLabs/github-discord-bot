@@ -31,8 +31,47 @@ const TEST_SERVER_API_URL = core.getInput('test_server_api_url', {
 
 const isProduction = BRANCH === 'master';
 const isWeb = CLIENT === 'web';
-const testMessageTitle = `🥳🥳 New TEST Version Of Black IDE ${isWeb ? '**Web**' : '**Desktop**'} Released!!`;
+const testMessageTitle = `📢📢 ${isWeb ? '**Web**' : '**Desktop**'} - New TEST Version Of Black IDE Released!!`;
 const prodMessageTitle = `🥳🥳 Black IDE  ${isWeb ? '**Web**' : '**Desktop**'} **v${VERSION}** Has Been Released!!`;
+
+let fields = [];
+if (isWeb) {
+	fields = isProduction ? [
+		{
+			name: "You can access the web IDE by 👇",
+			value: "https://ide.black"
+		}
+	] : [
+		{
+			name: "You can access the web IDE by 👇",
+			value: "https://eth-test.ide.black"
+		}
+	]
+} else {
+	fields = isProduction ? [
+		{
+			"name": "You can download the release assets from Github 👇",
+			"value": `[Click Me For Release Assets](https://github.com/ObsidianLabs/Black-IDE/releases`,
+		}
+	] : [
+		{
+			"name": "Mac OS",
+			"value": `[Download](${TEST_SERVER_API_URL}/${RUNNER_ID}-${COMMIT_ID}/Black-IDE-${VERSION}.dmg)`,
+			"inline": true
+		},
+		{
+			"name": "Windows",
+			"value": `[Download](${TEST_SERVER_API_URL}/${RUNNER_ID}-${COMMIT_ID}/Black-IDE-${VERSION}.exe)`,
+			"inline": true
+		},
+		{
+
+			"name": "Linux",
+			"value": `[Download](${TEST_SERVER_API_URL}/${RUNNER_ID}-${COMMIT_ID}/Black-IDE-${VERSION}.zip)`,
+			"inline": true
+		}
+	]
+}
 
 const params = {
 	username: "Github Bot",
@@ -42,30 +81,7 @@ const params = {
 			"title": isProduction ? prodMessageTitle : testMessageTitle,
 			"description": `${RUNNER_ID} - ${COMMIT_ID}`,
 			"color": "647562",
-			"fields": isProduction ?
-				[
-					{
-						"name": "You can download the release assets from Github 👇",
-						"value": `[Click Me For Release Assets](https://github.com/ObsidianLabs/Black-IDE/releases`,
-					}
-				] : [
-					{
-						"name": "Mac OS",
-						"value": `[Download](${TEST_SERVER_API_URL}/${RUNNER_ID}-${COMMIT_ID}/Black-IDE-${VERSION}.dmg)`,
-						"inline": true
-					},
-					{
-						"name": "Windows",
-						"value": `[Download](${TEST_SERVER_API_URL}/${RUNNER_ID}-${COMMIT_ID}/Black-IDE-${VERSION}.exe)`,
-						"inline": true
-					},
-					{
-
-						"name": "Linux",
-						"value": `[Download](${TEST_SERVER_API_URL}/${RUNNER_ID}-${COMMIT_ID}/Black-IDE-${VERSION}.zip)`,
-						"inline": true
-					}
-				]
+			"fields": fields
 		}
 	],
 }
