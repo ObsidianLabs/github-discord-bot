@@ -79,7 +79,7 @@ const params = {
 	embeds: [
 		{
 			"title": isProduction ? prodMessageTitle : testMessageTitle,
-			"description": `${RUNNER_ID} - ${COMMIT_ID}`,
+			"description": `${github.event.number} - ${RUNNER_ID} - ${COMMIT_ID}`,
 			"color": "647562",
 			"fields": fields
 		}
