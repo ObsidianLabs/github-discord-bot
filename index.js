@@ -17,6 +17,10 @@ const RUNNER_ID = core.getInput('runner_id', {
 	required: true
 })
 
+const REQUEST_ID = core.getInput('request_id', {
+	required: true
+})
+
 const CLIENT = core.getInput('client', {
 	required: true
 })
@@ -79,7 +83,7 @@ const params = {
 	embeds: [
 		{
 			"title": isProduction ? prodMessageTitle : testMessageTitle,
-			"description": `${github.event.number} - ${RUNNER_ID} - ${COMMIT_ID}`,
+			"description": `${REQUEST_ID} - ${RUNNER_ID} - ${COMMIT_ID}`,
 			"color": "647562",
 			"fields": fields
 		}

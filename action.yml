@@ -23,6 +23,9 @@ inputs:
   runner_id:
     description: 'Runner ID'
     required: true
+  request_id:
+    description: 'Request ID'
+    required: true
   version:
     description: 'version number'
     required: true
